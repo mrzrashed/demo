@@ -20,6 +20,25 @@
         a {
             text-decoration: none !important;
         }
+
+        .speech {
+            border: 1px solid #DDD;
+            width: 300px;
+            padding: 0;
+            margin: 0
+        }
+
+        .speech input {
+            border: 0;
+            width: 240px;
+            display: inline-block;
+            height: 30px;
+        }
+
+        .speech img {
+            float: right;
+            width: 40px
+        }
     </style>
 </head>
 
@@ -48,7 +67,26 @@
             </div>
         </div>
     </section>
-
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" name="q" id="transcript" class="form-control" placeholder="Speak" onclick="record()" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function record() {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "en-GB";
+            recognition.onresult = function (event) {
+                console.log(event);
+                document.getElementById('transcript').value = event.results[0][0].transcript;
+            }
+            recognition.start();
+        }
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.4.1.min.js"></script>
