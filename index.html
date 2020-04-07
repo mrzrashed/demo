@@ -71,21 +71,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <input type="text" name="q" id="transcript" class="form-control" placeholder="Speak" onclick="record()" />
+                    <input type="text" name="q" id="transcript"  class="form-control" placeholder="Speak" onclick="record()"  />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p id="result"></p>
                 </div>
             </div>
         </div>
+        
     </section>
     <script>
         function record() {
             var recognition = new webkitSpeechRecognition();
             recognition.lang = "en-GB";
             recognition.onresult = function (event) {
-                console.log(event);
                 document.getElementById('transcript').value = event.results[0][0].transcript;
+                document.getElementById('result').innerHTML = "Your result:"+event.results[0][0].transcript;
             }
             recognition.start();
         }
+        
+        
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
